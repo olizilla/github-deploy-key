@@ -1,8 +1,8 @@
 # github-deploy-key
 
-**A cli to generate and add SSH deploy keys to private repos**
+**A cli to generate and add SSH [deploy keys](https://developer.github.com/guides/managing-deploy-keys/#deploy-keys) to private repos**
 
-Useful if you want to automate deploying an app from multiple private repos.
+Saves you from having to remember the ssh-keygen args and then fumble around on github like an animal 🐯
 
 `npm install -g github-deploy-key`
 
@@ -16,7 +16,7 @@ github-deploy-key add olizilla/github-deploy-key --token deadbeef
 ```
 
 Where:
-- `<repo>` is 1 or more github `owner/repo`s to add a key to.
+- `[repo]` is 1 or more repos that you want to add ssh deploy keys to.
 - `--token <rando>` is a github [access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
 
 Running the above will create a new random [ssh keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) and POST the **public key** to the [add deploy key](https://developer.github.com/v3/repos/keys/#add-a-new-deploy-key) github api, and mark it as `read_only: true` as that's best. This is a disposable deploy key after all, and has no business being used to change the repo.
