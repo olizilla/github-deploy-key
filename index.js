@@ -10,21 +10,21 @@ if (!conf.token) return fail ('please provide a github token [--token rando]')
 
 const addToGithub = require('./add-to-github')(conf.token)
 
-if (conf._[0] === 'add') {
-  const repos = conf._.slice(1)
-  async.map(repos, createKeypair, (err, res) => {
+if (conf._[0] !== 'add') return fail ('Usage: $ github-deploy-key add tableflip/whizz --token rando')
+
+const repos = conf._.slice(1)
+async.map(repos, createKeypair, (err, res) => {
+  if (err) return fail(err)
+  async.map(res, addToGithub, (err, res) => {
     if (err) return fail(err)
-    async.map(res, addToGithub, (err, res) => {
-      if (err) return fail(err)
-      res.forEach(() => {
-        console.log('Public key added to:', res.repo)
-        console.log('Private key for:', res.repo)
-        console.log(res.kepair.priv)
-        console.log()
-      })
+    res.forEach(() => {
+      console.log('Public key added to:', res.repo)
+      console.log('Private key for:', res.repo)
+      console.log(res.kepair.priv)
+      console.log()
     })
   })
-}
+})
 
 function fail (msg) {
   console.error(msg)

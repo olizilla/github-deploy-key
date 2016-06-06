@@ -1,8 +1,16 @@
 const request = require('request')
 
 module.exports = function (token) {
-  const gh = request.defaults({'Authorization', 'token ' + token})
+  const gh = request.defaults({
+    baseUrl: 'https://api.github.com',
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: 'token ' + token
+    }
+  })
+
   return function (data, cb) {
+    console.log('gh', data)
     gh.post({
       url: `/repos/${data.repo}/keys`,
       body: {
@@ -12,11 +20,4 @@ module.exports = function (token) {
       }
     }, cb)
   }
-}
-
-module.exports = function (data, cb) {
-  var repo = data.repo
-  var pub = data.keypair.pub
-  request.post
-  cb(null, 'ok')
 }
