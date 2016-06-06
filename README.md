@@ -25,7 +25,7 @@ The **private key** will be logged out to the console, for you to add to your va
 
 You can go check https://github.com/olizilla/github-deploy-key/settings/keys or the equivalent for your repo to see the public key was added.
 
-The key-pair are also dumped in the current working directory like as:
+The key-pair are also dumped in the current working directory like so:
 
 ```
 ./<repo>/<timestamp>/id_rsa{.pub}
@@ -38,7 +38,7 @@ olizilla
         └── id_rsa.pub
 ```
 
-It's probably best to burn them as soon as you've shuffled the private key onto the CI server that'll use it, but there their for you convenience, to delete at your leisure.
+It's probably best to burn them as soon as you've shuffled the private key onto the CI server that'll use it, but they're there for you convenience, to delete at your leisure.
 
 This module uses [`rc`](https://www.npmjs.com/package/rc) so you can save yourself a copy paste by storing your github http access token to any config file it supports, like
 
