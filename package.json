@@ -1,6 +1,6 @@
 {
   "name": "github-deploy-key",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI to add a random ssh deploy key to a github repository",
   "main": "index.js",
   "bin": "bin/github-deploy-key",
