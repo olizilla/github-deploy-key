@@ -4,7 +4,7 @@
 
 Saves you from having to remember the ssh-keygen args and then fumble around on github like an animal 🐯
 
-`npm install -g github-deploy-key`
+[`npm install -g github-deploy-key`](https://www.npmjs.com/package/github-deploy-key)
 
 ## Usage
 
