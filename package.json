@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "CLI to add a random ssh deploy key to a github repository",
   "main": "index.js",
+  "bin": "bin/github-deploy-key",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

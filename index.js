@@ -3,25 +3,26 @@ const conf = require('rc')(pkg.name)
 const async = require('async')
 const createKeypair = require('./create-keypair')
 
-// github-deploy-key add tableflip/whizzbang -user oli
+// usage: github-deploy-key add tableflip/whizzbang -user oli
 // { _: [ 'add', 'tableflip/whizz' ], token: 'sdfkjsaldalsdkjaslkdjasl' }
 
 if (!conf.token) return fail ('please provide a github token [--token rando]')
-
 const addToGithub = require('./add-to-github')(conf.token)
 
 if (conf._[0] !== 'add') return fail ('Usage: $ github-deploy-key add tableflip/whizz --token rando')
-
 const repos = conf._.slice(1)
-async.map(repos, createKeypair, (err, res) => {
+
+if (!repos.length) return fail ('Usage: $ github-deploy-key add tableflip/whizz --token rando')
+
+async.map(repos, createKeypair, (err, keys) => {
   if (err) return fail(err)
-  async.map(res, addToGithub, (err, res) => {
+  async.map(keys, addToGithub, (err, keys) => {
     if (err) return fail(err)
-    res.forEach(() => {
-      console.log('Public key added to:', res.repo)
-      console.log('Private key for:', res.repo)
-      console.log(res.kepair.priv)
+    keys.forEach((res) => {
       console.log()
+      console.log(res.keypair.priv)
+      console.log(`Private key for: ${res.repo} 👆`)
+      console.log(`Public key added to: https://github.com/${res.repo}/settings/keys`)
     })
   })
 })
