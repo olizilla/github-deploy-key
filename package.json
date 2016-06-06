@@ -1,0 +1,32 @@
+{
+  "name": "github-deploy-key",
+  "version": "0.1.0",
+  "description": "CLI to add a random ssh deploy key to a github repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "olizilla",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "mkdirp": "^0.5.1",
+    "rc": "^1.1.6",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olizilla/github-deploy-key.git"
+  },
+  "keywords": [
+    "github",
+    "deploy",
+    "key",
+    "cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/olizilla/github-deploy-key/issues"
+  },
+  "homepage": "https://github.com/olizilla/github-deploy-key#readme"
+}
