@@ -19,7 +19,7 @@ Where:
 - `[repo]` is 1 or more repos that you want to add ssh deploy keys to.
 - `--token <rando>` is a github [access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
 
-Running the above will create a new random [ssh keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) and POST the **public key** to the [add deploy key](https://developer.github.com/v3/repos/keys/#add-a-new-deploy-key) github api, and mark it as `read_only: true` as that's best. This is a disposable deploy key after all, and has no business being used to change the repo.
+Running the above will create a new random [ssh keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) and POST the **public key** to the [add deploy key](https://developer.github.com/v3/repos/keys/#add-a-new-deploy-key) github api, and mark it as `read_only: true` as that's best. This is a disposable deploy key after all, and has no business being used to change the repo. However, if you need to grant write access, you can use the flag `--grantWriteAccess` to set `read_only: false`. The default is `read_only: true`.
 
 The **private key** will be logged out to the console, for you to add to your vault or deploy bots or whatever automagic you choose to set up. It's imbued with enough power to clone the private repo you just added it's public counterpart to, so keep it away from burglars and kids.
 
