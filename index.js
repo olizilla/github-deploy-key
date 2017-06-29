@@ -1,5 +1,5 @@
 const pkg = require('./package.json')
-const conf = require('rc')(pkg.name)
+const conf = require('rc')(pkg.name, {grantWriteAccess: false})
 const async = require('async')
 const createKeypair = require('./create-keypair')
 
@@ -7,7 +7,7 @@ const createKeypair = require('./create-keypair')
 // { _: [ 'add', 'tableflip/whizz' ], token: 'sdfkjsaldalsdkjaslkdjasl' }
 
 if (!conf.token) return fail ('please provide a github token [--token rando]')
-const addToGithub = require('./add-to-github')(conf.token)
+const addToGithub = require('./add-to-github')(conf.token, conf.grantWriteAccess)
 
 if (conf._[0] !== 'add') return fail ('Usage: $ github-deploy-key add tableflip/whizz --token rando')
 const repos = conf._.slice(1)

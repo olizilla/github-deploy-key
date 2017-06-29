@@ -1,6 +1,6 @@
 const request = require('request')
 
-module.exports = function (token) {
+module.exports = function (token, write_access) {
   const gh = request.defaults({
     json: true,
     baseUrl: 'https://api.github.com',
@@ -10,14 +10,14 @@ module.exports = function (token) {
       Authorization: 'token ' + token
     }
   })
-
+    
   return function (data, cb) {
     gh.post({
       url: `/repos/${data.repo}/keys`,
       body: {
         title: data.keypair.comment,
         key: data.keypair.pub,
-        read_only: true
+        read_only: !write_access
       }
     }, (err, res, body) => {
       if(err || res.statusCode > 299) return cb(err || body)
